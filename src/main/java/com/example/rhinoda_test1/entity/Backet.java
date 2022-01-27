@@ -11,4 +11,10 @@ import javax.persistence.Entity;
 @Setter
 @NoArgsConstructor
 public class Backet {
+
+    int productId;
+    int amountProducts;
+    String paymentType;
+    int addressId;
+
 }
