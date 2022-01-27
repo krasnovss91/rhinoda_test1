@@ -14,8 +14,8 @@ public class BacketController {
     BacketService backetService;
 
     @PostMapping("/getBacket")
-    public CalculatedBacket getBacket(Backet backet){//поймать по сети объект "Корзина" и передать его сервису
-        backetService.CalculateTotalSum(backet);//получить полную стоимость, собрать через конструктор расчитаную корзину и вернуть
+    public CalculatedBacket getBacket(Backet backet) {//поймать по сети объект "Корзина" и передать его сервису, получить расчитанную корзину
+        return backetService.CalculateBacketCost(backet);
     }
 
 }
