@@ -17,8 +17,12 @@ public class BacketService {
     public CalculatedBacket CalculateBacketCost(Backet backet){//вернуть стоимость, используя внешний микросервис
 //получить полную стоимость, собрать через конструктор расчитаную корзину и вернуть
 
-        var sumOfPosition = 0;// получить из кэша
-        var totalSum = 0;//взять количество товаров и сумму по позиции, кинуть в другой микросервис по http и получить из него ответ
+        var sumOfPosition = 0;// получить из кэша, если их там нет, берём из микросервиса и кладём в кэш
+        //использовать springframework.cache
+        var totalSum = httpClient.send(backet.getAmountProducts()+ sumOfPosition);//взять количество товаров и сумму по позиции, кинуть в другой микросервис по http и получить из него ответ
 
+        var calculatedBacket = new CalculatedBacket(backet.getProductId(),backet.getAmountProducts(),sumOfPosition,totalSum);
+
+        return calculatedBacket;
     }
 }
